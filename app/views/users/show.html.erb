@@ -1,0 +1,13 @@
+<h2>Hello, <%= @user.email %>!</h2>
+
+<h2>Your Games: </h2>
+  <% @user.games.each do |game| %>
+    <%= link_to game.name, user_game_path %>
+  <% end %>
+
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+<% if @user.admin %>
+<h1>ADMIN</h1>
+<% end %>

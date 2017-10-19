@@ -1,0 +1,6 @@
+<%= form_for @game, url: "/games" do |f| %>
+  Name: <%= f.text_field :name %>
+  Price: <%= f.text_field :price %>
+
+  <%= f.submit "Create Game" %>
+<% end %>

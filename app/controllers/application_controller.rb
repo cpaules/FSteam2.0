@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   end
 
   def home
+    @games = Game.all
   end
 
 end
