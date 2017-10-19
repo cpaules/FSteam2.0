@@ -1,9 +1,9 @@
 <nav class="">
   <%= link_to "FSteam Home", root_path %>
   <% if user_signed_in? %>
-    Signed in as <%= current_user.email %>
+    Signed in as <%= link_to current_user.email, user_path(current_user) %>
     <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
-    Your Balance: <%= number_to_currency(current_user.money.to_f/100) %>
+    Your Balance: <%= number_to_currency(current_user.money.to_f) %>
     <%= link_to 'Add Funds', destroy_user_session_path, method: :delete %>
   <% else %>
     <%= link_to 'Sign in', new_user_session_path %>

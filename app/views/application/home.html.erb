@@ -1,12 +1,14 @@
-<h1>Welcome</h1>
+<h1>Welcome to FSteam!</h1>
 
 <% @games.each do |game| %>
-  <p><%= game.name %> | <%= number_to_currency(game.price.to_f/100) %>
-  <% if current_user.games.include?(game) %>
+  <h3><%= game.name %> | <%= number_to_currency(game.price.to_f) %> </h3>
+  <% if !current_user.games.include?(game) %>
     <%= button_to 'Purchase Game', add_game_path(game) %>
-  <% end %> <br>
+  <% else %>
+    <p> Already Purchased! </p>
+  <% end %>
 <% end %>
-
+<br></br>
 <% if current_user.admin %>
   <%= link_to "Add A New Game", "games/new" %>
 <% end %>
