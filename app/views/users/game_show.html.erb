@@ -4,5 +4,7 @@
   <h3>You haven't rated <%= @game.name %> yet!</h3>
   <%= link_to 'Click Here to Rate it', user_rating_path %>
   <% else %>
-  <h3>You rated <%= @game.name %> a </h3>
+  <h3>Your rating for <%= @game.name %>: <%= @rating.rating_value %>/10</h3>
+  <p> <%= @rating.comment %> </p>
+  <%= link_to 'Click Here to Edit', user_rating_path %>
 <% end %>

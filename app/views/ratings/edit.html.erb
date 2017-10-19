@@ -1,9 +1,9 @@
-<%= form_for @attraction do |f| %>
-  Name: <%= f.text_field :name %>
-  Min Height: <%= f.text_field :min_height %>
-  Happiness Rating: <%= f.text_field :happiness_rating %>
-  Nausea Rating: <%= f.text_field :nausea_rating %>
-  Tickets: <%= f.text_field :tickets %>
+<h2>Add Your Rating for <%= @game.name %>!</h2>
+<h4>Use 0-10 scale, with 10 being the best and 0 being the worst!</h4>
 
-  <%= f.submit "Update Attraction" %>
+<%= form_for @rating do |f| %>
+  Rating Value: <%= f.text_field :rating_value %>
+  Add a more detailed review: <%= f.text_area :comment %>
+
+  <%= f.submit "Submit Rating" %>
 <% end %>
