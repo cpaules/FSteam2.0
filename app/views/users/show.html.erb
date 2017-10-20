@@ -1,13 +1,18 @@
-<h2>Hello, <%= @user.email %>!</h2>
-
-<h2>Your Games: </h2>
-  <% @user.games.each do |game| %>
-    <%= link_to game.name, user_game_path(current_user, game) %>
-  <% end %>
-
 <% if flash[:notice] %>
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
+
+<h2>Hello, <%= @user.email %>!</h2>
+
+<% if @user.games.size != 0%>
+  <h2>Your Games: </h2>
+    <% @user.games.each do |game| %>
+      <%= link_to game.name, user_game_path(current_user, game) %>
+    <% end %>
+  <% else %>
+    <h2>You don't have any games!</h2>
+<% end %>
+
 <% if @user.admin %>
 <h1>ADMIN</h1>
 <% end %>

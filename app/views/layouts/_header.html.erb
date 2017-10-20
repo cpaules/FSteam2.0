@@ -4,7 +4,7 @@
     Signed in as <%= link_to current_user.email, user_path(current_user) %>
     <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
     Your Balance: <%= number_to_currency(current_user.money.to_f) %>
-    <%= link_to 'Add Funds', destroy_user_session_path, method: :delete %>
+    <%= link_to 'Add Funds', user_fund_path(current_user) %>
   <% else %>
     <%= link_to 'Sign in', new_user_session_path %>
     <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>

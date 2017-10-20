@@ -17,4 +17,15 @@ class User < ApplicationRecord
      end
    end
 
+   def purchase_game(game)
+     binding.pry
+     if self.money >= game.price
+       self.money -= game.price
+       self.games << game
+       self.save
+     else
+       "You don't have enough money to purchase #{game.name}!"
+     end
+   end
+
 end

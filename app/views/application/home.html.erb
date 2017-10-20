@@ -2,13 +2,16 @@
 
 <% @games.each do |game| %>
   <h3><%= game.name %> | <%= number_to_currency(game.price.to_f) %> </h3>
-  <% if !current_user.games.include?(game) %>
-    <%= button_to 'Purchase Game', add_game_path(game) %>
-  <% else %>
-    <p> Already Purchased! </p>
-  <% end %>
-<% end %>
+  <% if current_user %>
+    <% if !current_user.games.include?(game) %>
+      <%= button_to 'Purchase Game', add_game_path(game) %>
+        <% else %>
+        <p> Already Purchased! </p>
+      <% end %>
+
 <br></br>
-<% if current_user.admin %>
-  <%= link_to "Add A New Game", "games/new" %>
+    <% if current_user.admin %>
+      <%= link_to "Add A New Game", "games/new" %>
+    <% end %>
+  <% end %>
 <% end %>

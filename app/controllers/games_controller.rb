@@ -18,14 +18,15 @@ class GamesController < ApplicationController
   def show
   end
 
-  def add #todo need to subtract money from user
-    if current_user.games.include?(@game)
-      redirect_to '/games'
+  def add #TODO
+    if current_user.games.include?(@game) #technically shouldnt need this since th button shouldt appear if user already has it
+      flash[:notice] = "You already have #{@game.name}!"
+    elsif current_user.purchase_game(request.@game) == true
+      flash[:notice] = "Thank you for purchasing #{@game.name}!"
     else
-      current_user.games << @game
-      redirect_to root_path
+      flash[:notice] = current_user.purchase_game(request.@game)
     end
-
+      redirect_to user_path
   end
 
   private
