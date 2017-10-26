@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :ratings
-  resources :games
+
+  resources :games do
+    resources :ratings
+  end
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   get '/users/:user_id' => 'users#show', as: 'user'
   post '/games/:id/add' => 'games#add', as: 'add_game'
@@ -11,5 +13,5 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root 'application#home'
-
+  resources :tags 
 end

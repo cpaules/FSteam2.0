@@ -1,13 +1,21 @@
-<% if flash[:notice] %>
-  <div class="notice"><%= flash[:notice] %></div>
-<% end %>
+<% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2>There were some errors:</h2>
+
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
 <h2>Hello, <%= @user.email %>!</h2>
 
 <% if @user.games.size != 0%>
   <h2>Your Games: </h2>
     <% @user.games.each do |game| %>
-      <%= link_to game.name, user_game_path(current_user, game) %>
+      <%= link_to game.name, user_game_path(current_user, game) %> <br></br>
     <% end %>
   <% else %>
     <h2>You don't have any games!</h2>

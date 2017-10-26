@@ -17,9 +17,14 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.money += user_params["money"].to_f
-	  @user.save
-	  redirect_to user_path(@user)
+    if user_params["money"].to_f.class != Float
+      @user.errors.add(:money, "Not valid")
+      render :show
+    else
+      @user.money += user_params["money"].to_f
+	    @user.save
+      redirect_to user_path(@user)
+    end
   end
 
 private

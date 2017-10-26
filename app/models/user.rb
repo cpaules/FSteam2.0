@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   has_many :ratings
   has_many :games, through: :ratings
+  validates :money, numericality: true, allow_nil: true
 
    def self.from_omniauth(auth)
      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -18,7 +19,6 @@ class User < ApplicationRecord
    end
 
    def purchase_game(game)
-     binding.pry
      if self.money >= game.price
        self.money -= game.price
        self.games << game

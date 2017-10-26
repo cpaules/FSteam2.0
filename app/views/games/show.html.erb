@@ -1,2 +1,14 @@
 <h1>Name: <%= @game.name %></h1>
 <h2>Price: $<%= @game.price %></h2>
+<h3>Tags:</h3>
+  <ul>
+    <% @game.tags.each do |tag| %>
+    <p><%= tag.name %></p>
+    <% end %>
+  </ul>
+<h3>Ratings:</h3>
+  <ul>
+    <% @game.ratings.each do |rating| %>
+    <li><%= rating.rating_value %>/10,  <%= rating.comment %></li>
+    <% end %>
+  </ul>

@@ -1,6 +1,23 @@
-<%= form_for @game, url: "/games" do |f| %>
+<%= form_for @game, url: "/games" do |f| %> <br></br>
+  <% if @game.errors.any? %>
+      <div id="error_explanation">
+        <h2>There were some errors:</h2>
+
+        <ul>
+          <% @game.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
   Name: <%= f.text_field :name %>
   Price: <%= f.text_field :price %>
 
+  <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %> <br></br>
+  <%= f.fields_for :tags, @game.tags.build do |tags_fields| %>
+
+    New Tag: <%= tags_fields.text_field :name %>
+  <% end %> <br></br>
   <%= f.submit "Create Game" %>
 <% end %>

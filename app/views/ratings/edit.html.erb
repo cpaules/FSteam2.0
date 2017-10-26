@@ -1,7 +1,19 @@
+
 <h2>Add Your Rating for <%= @game.name %>!</h2>
 <h4>Use 0-10 scale, with 10 being the best and 0 being the worst!</h4>
 
-<%= form_for @rating do |f| %>
+<%= form_for [@game, @rating] do |f| %>
+  <% if @rating.errors.any? %>
+      <div id="error_explanation">
+        <h2>There were some errors:</h2>
+
+        <ul>
+          <% @rating.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
   Rating Value: <%= f.text_field :rating_value %>
   Add a more detailed review: <%= f.text_area :comment %>
 

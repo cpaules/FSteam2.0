@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
 
-  before_action :set_game, only: [:show, :edit, :update]
+  before_action :set_game, only: [:show, :edit, :update, :add]
 
   def new
     @game = Game.new
@@ -19,14 +19,12 @@ class GamesController < ApplicationController
   end
 
   def add #TODO
-    if current_user.games.include?(@game) #technically shouldnt need this since th button shouldt appear if user already has it
-      flash[:notice] = "You already have #{@game.name}!"
-    elsif current_user.purchase_game(request.@game) == true
+    if current_user.purchase_game(@game) == true
       flash[:notice] = "Thank you for purchasing #{@game.name}!"
     else
-      flash[:notice] = current_user.purchase_game(request.@game)
+      flash[:notice] = current_user.purchase_game(@game)
     end
-      redirect_to user_path
+      redirect_to user_path(current_user)
   end
 
   private
@@ -36,7 +34,7 @@ class GamesController < ApplicationController
     end
 
     def game_params
-      params.require(:game).permit(:name, :price)
+      params.require(:game).permit(:name, :price, :tag_ids=>[], tags_attributes: [:name])
     end
 
 end

@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018184751) do
+ActiveRecord::Schema.define(version: 20171023210748) do
+
+  create_table "game_tags", force: :cascade do |t|
+    t.integer "game_id"
+    t.integer "tag_id"
+  end
 
   create_table "games", force: :cascade do |t|
     t.string   "name"
@@ -22,10 +27,14 @@ ActiveRecord::Schema.define(version: 20171018184751) do
   create_table "ratings", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "game_id"
-    t.integer  "rating_value"
+    t.integer  "rating_value", default: 0
     t.string   "comment"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,7 +52,7 @@ ActiveRecord::Schema.define(version: 20171018184751) do
     t.datetime "updated_at",                             null: false
     t.string   "provider"
     t.string   "uid"
-    t.integer  "money"
+    t.         "money",                  default: "0"
     t.boolean  "admin",                  default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider"], name: "index_users_on_provider"

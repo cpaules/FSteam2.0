@@ -9,7 +9,7 @@ class RatingsController < ApplicationController
       #binding.pry
       redirect_to user_game_path(current_user, @game)
     else
-      redirect_to user_rating_path(current_user, @game) # "/users/#{@rating.user_id}/games/#{@rating.game_id}/edit"
+      render :edit # "/users/#{@rating.user_id}/games/#{@rating.game_id}/edit"
     end
   end
 
