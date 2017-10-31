@@ -11,3 +11,7 @@ Version 2.0 improvements:
   - Users can now write full comments to go along with their numerical ratings for games
 
 After forking and cloning the repo, run bundle install. Launch the app using rails s.
+
+You can contribute by submiting a pull request!
+
+Licensed under the MIT License

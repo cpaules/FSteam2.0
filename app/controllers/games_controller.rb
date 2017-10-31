@@ -11,7 +11,7 @@ class GamesController < ApplicationController
     if @game.save
       redirect_to "/games/#{@game.id}"
     else
-      redirect_to "/games/new"
+      redirect_to new_game_path
     end
   end
 

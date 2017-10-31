@@ -9,6 +9,6 @@
 <h3>Ratings:</h3>
   <ul>
     <% @game.ratings.each do |rating| %>
-    <li><%= rating.rating_value %>/10,  <%= rating.comment %></li>
+    <li><%= rating.user.email %>: <%= rating.rating_value %>/10,  <%= rating.comment %></li>
     <% end %>
   </ul>

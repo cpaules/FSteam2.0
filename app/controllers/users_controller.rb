@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if user_params["money"].to_f.class != Float
+    if user_params["money"].class != Float
       @user.errors.add(:money, "Not valid")
       render :show
     else
