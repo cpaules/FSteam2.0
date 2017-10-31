@@ -5,12 +5,10 @@ class RatingsController < ApplicationController
   end
 
   def update
-    #binding.pry
     if @rating.update(rating_params)
-      #binding.pry
       redirect_to user_game_path(current_user, @game)
     else
-      render :edit # "/users/#{@rating.user_id}/games/#{@rating.game_id}/edit"
+      render :edit
     end
   end
 

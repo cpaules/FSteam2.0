@@ -18,7 +18,7 @@ class GamesController < ApplicationController
   def show
   end
 
-  def add #TODO
+  def add
     if current_user.purchase_game(@game) == true
       flash[:notice] = "Thank you for purchasing #{@game.name}!"
     else
