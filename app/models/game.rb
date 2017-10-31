@@ -19,11 +19,11 @@ class Game < ApplicationRecord
   def self.highest_rated
     best_rating = 0
     best_game = nil
-    
+
     Rating.all.each do |rating|
       if rating.rating_value > best_rating
         best_rating = rating.rating_value
-        best_game = Game.find_by(:id => rating.game_id).name
+        best_game = Game.find_by(:id => rating.game_id)
       end
     end
     best_game

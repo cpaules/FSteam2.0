@@ -5,6 +5,7 @@ class RatingsController < ApplicationController
   end
 
   def update
+    #binding.pry
     if @rating.update(rating_params)
       #binding.pry
       redirect_to user_game_path(current_user, @game)
@@ -16,7 +17,7 @@ class RatingsController < ApplicationController
   private
 
   def set_rating
-    @game = Game.find(params[:id])
+    @game = Game.find(params[:game_id])
     @rating = Rating.find_by(:user_id => current_user.id, :game_id => @game.id)
   end
 
