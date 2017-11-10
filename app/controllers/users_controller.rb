@@ -2,7 +2,11 @@ class UsersController < ApplicationController
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-  def show
+  def show  #TODO: add foreign keys(user id of user who posted the comment) to comments table
+    @comments = @user.comments
+    if @comments == nil
+      @comments = @user.comments.build
+    end
   end
 
   def game_show #show game and your rating/review of the game
@@ -25,6 +29,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+    @users = User.all
+  end
+
 private
 
   def set_user
@@ -32,6 +40,6 @@ private
   end
 
   def user_params
-    params.require(:user).permit(:password, :admin, :money)
+    params.require(:user).permit(:password, :admin, :money, comments_attributes: [:comment])
   end
 end

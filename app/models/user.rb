@@ -9,6 +9,8 @@ class User < ApplicationRecord
 
   has_many :ratings
   has_many :games, through: :ratings
+  has_many :comments
+  accepts_nested_attributes_for :comments
   validates :money, numericality: true, allow_nil: true
 
    def self.from_omniauth(auth)
