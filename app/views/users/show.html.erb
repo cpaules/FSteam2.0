@@ -21,25 +21,6 @@
     <h2>You don't have any games!</h2>
 <% end %>
 
-<h2>Other User's Comments: </h2>
-
-<%= form_for [@user, @comment], url: user_path(@user)  do |f| %>
-  <% if @user.errors.any? %>
-      <div id="error_explanation">
-        <h2>There were some errors:</h2>
-
-        <ul>
-          <% @user.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-  Add a comment on this user: <%= f.text_area :comment %>
-
-  <%= f.submit "Submit Comment" %>
-<% end %>
-
 <% if @user.admin %>
 <h1>ADMIN</h1>
 <% end %>

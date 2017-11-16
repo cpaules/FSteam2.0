@@ -3,10 +3,10 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def show  #TODO: add foreign keys(user id of user who posted the comment) to comments table
-    @comments = @user.comments
-    if @comments == nil
-      @comments = @user.comments.build
-    end
+    # @comments = @user.comments
+    # if @comments == nil
+    #   @comments = @user.comments.build
+    # end
   end
 
   def game_show #show game and your rating/review of the game
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if user_params["money"].class != Float
+    if user_params["money"].to_f.class != Float
       @user.errors.add(:money, "Not valid")
       render :show
     else

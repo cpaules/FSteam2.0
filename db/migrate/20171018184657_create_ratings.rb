@@ -3,7 +3,7 @@ class CreateRatings < ActiveRecord::Migration[5.0]
     create_table :ratings do |t|
       t.integer :user_id
       t.integer :game_id
-      t.integer :rating_value, default: 0
+      t.integer :rating_value, default: nil
       t.string :comment
 
       t.timestamps

@@ -21,7 +21,7 @@ class Game < ApplicationRecord
     best_game = nil
 
     Rating.all.each do |rating|
-      if rating.rating_value > best_rating
+      if rating.rating_value && rating.rating_value > best_rating
         best_rating = rating.rating_value
         best_game = Game.find_by(:id => rating.game_id)
       end
@@ -31,9 +31,15 @@ class Game < ApplicationRecord
 
   def avg_rating
     av_rating = 0.0
+    nil_ratings_count = 0
     self.ratings.each do |rating|
-      av_rating += rating.rating_value
+      if rating.rating_value != nil
+        av_rating += rating.rating_value
+      else
+        nil_ratings_count += 1
+      end
     end
-    av_rating /= self.ratings.size
+    non_nil_ratings_size = self.ratings.size - nil_ratings_count
+    av_rating /= non_nil_ratings_size
   end
 end
