@@ -1,5 +1,5 @@
-<h1>Name: <%= @game.name %></h1>
-<h2>Price: $<%= @game.price %></h2>
+<h1 class= "gameName">Name: <%= @game.name %></h1>
+<h2 class= "gamePrice">Price: $<%= @game.price %></h2>
 <h3>Tags:</h3>
   <ul>
     <% @game.tags.each do |tag| %>
@@ -11,4 +11,19 @@
     <% @game.ratings.each do |rating| %>
     <li><%= rating.user.email %>: <%= rating.rating_value %>/10,  <%= rating.comment %></li>
     <% end %>
-  </ul>
+  </ul> <br>
+<a href="#" class="js-next" data-id="<%=@game.id%>">Next Game</a>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-next").on("click", function() {
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    $.get("/games/" + nextId + ".json", function(data) {
+      $(".gameName").text("Name: " + data["name"]);
+      $(".gamePrice").text("Price: $" + data["price"]);
+      // re-set the id to current on the link
+      $(".js-next").attr("data-id", data["id"]);
+    });
+  });
+});
+</script>
