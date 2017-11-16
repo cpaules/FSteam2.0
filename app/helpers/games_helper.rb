@@ -11,7 +11,7 @@ module GamesHelper
 
   def show_highest_rated(highest_rated)
     if highest_rated
-      "The highest rated game is #{highest_rated.name}, with a rating of #{highest_rated.avg_rating}!"
+      "The highest rated game is #{highest_rated.name}, with an average rating of #{highest_rated.avg_rating}!"
     else
       "No games have been rated!"
     end
