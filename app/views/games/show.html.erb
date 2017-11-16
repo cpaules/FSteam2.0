@@ -1,26 +1,44 @@
 <h1 class= "gameName">Name: <%= @game.name %></h1>
 <h2 class= "gamePrice">Price: $<%= @game.price %></h2>
 <h3>Tags:</h3>
-  <ul>
+  <ul id="game-<%= @game.id %>-tags">
     <% @game.tags.each do |tag| %>
-    <p><%= tag.name %></p>
+    <li><%= tag.name %></li>
     <% end %>
   </ul>
 <h3>Ratings:</h3>
-  <ul>
+  <ul id="game-<%= @game.id %>-ratings">
     <% @game.ratings.each do |rating| %>
-    <li><%= rating.user.email %>: <%= rating.rating_value %>/10,  <%= rating.comment %></li>
+      <% if rating.rating_value != nil %>
+        <li><%= rating.user.email %>: <%= rating.rating_value %>/10,  <%= rating.comment %></li>
+      <% end %>
     <% end %>
   </ul> <br>
 <a href="#" class="js-next" data-id="<%=@game.id%>">Next Game</a>
 
 <script type="text/javascript" charset="utf-8">
 $(function () {
-  $(".js-next").on("click", function() {
+  $(".js-next").on("click", function(event) {
+    event.preventDefault();
+    var id = $(this).data("id");
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/games/" + nextId + ".json", function(data) {
       $(".gameName").text("Name: " + data["name"]);
       $(".gamePrice").text("Price: $" + data["price"]);
+
+      var tags = data["tags"];
+      var tagList = "";
+      tags.forEach(function(tag) {
+        tagList += '<li class="js-tag" data-id="' + tag["id"] + '">' + tag["name"] + '</li>';
+      });
+      $("#game-" + id + "-tags").html(tagList);
+
+      var ratings = data["ratings"];
+      var ratingList = "";
+      ratings.forEach(function(rating) {
+        ratingList += '<li class="js-rating" data-id="' + rating["id"] + '">' + rating["rating_value"] + ", " + rating["comment"] + '</li>';
+      });
+      $("#game-" + id + "-ratings").html(ratingList);
       // re-set the id to current on the link
       $(".js-next").attr("data-id", data["id"]);
     });
