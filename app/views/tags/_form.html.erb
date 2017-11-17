@@ -11,14 +11,10 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.label :name %><br>
+  <%= f.text_field :name %>
+  <%= f.submit %>
+  
 <% end %>
 
 <div id="postResult">
@@ -34,6 +30,16 @@
       var posting = $.post('/tags', values);
       posting.done(function(data) {
         $("#tagName").text("New Tag Created: " + data["name"]);
+
+        function Tag(id, name){
+        this.name = name
+        this.homeState = homeState
+        this.training = training
+        }
+        Tag.prototype.veto = function(){
+          return 'No, I must disagree'
+        }
+
       });
     });
   });
