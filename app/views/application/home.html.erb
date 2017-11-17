@@ -1,10 +1,10 @@
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+<% end %>
 <h1>Welcome to FSteam!</h1>
 <% @games.each do |game| %>
   <h3><%= link_to (game.name+" - "+number_to_currency(game.price.to_f)), game_path(game) %> </h3>
   <p> <%= purchase_game_link(game) %> </p>
-  <% if flash[:notice] %>
-      <div class="notice"><%= flash[:notice] %></div>
-    <% end %>
 <% end %>
 <br></br>
 <%= link_to "Add A New Game", "games/new" %>
