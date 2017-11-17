@@ -8,3 +8,43 @@
   <p> <%= @rating.comment %> </p>
   <%= link_to 'Click Here to Edit', user_rating_path %>
 <% end %>
+
+<!-- <%= form_for [@game, @rating] do |f| %>
+  <% if @rating.errors.any? %>
+      <div id="error_explanation">
+        <h2>There were some errors:</h2>
+
+        <ul>
+          <% @rating.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  Rating Value: <%= f.text_field :rating_value %>
+  Add a more detailed review: <%= f.text_area :comment %>
+
+  <%= f.submit "Submit Rating" %>
+<% end %>
+
+<div id="postResult">
+  <h3 id="ratingValue"></h3>
+  <p id="ratingComment"></p>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('form').submit(function(event) {
+      //prevent form from submitting the default way
+      event.preventDefault();
+      var values = $(this).serialize();
+      var user_id = $(this).data("user_id"); // both ids = undefined
+      var game_id = $(this).data("id");
+      var posting = $.post('/users/' + user_id + '/games/' + game_id, values);
+      posting.done(function(data) {
+        $("#ratingValue").text("Rating value: " + data["rating_value"]);
+        $("#ratingComment").text("Comment: " + data["comment"]);
+      });
+    });
+  });
+</script> -->
