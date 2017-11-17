@@ -9,6 +9,23 @@
 <br></br>
 <%= link_to "Add A New Game", "games/new" %>
 <%= link_to "Add A New Tag", new_tag_path %>
-<%= link_to "All Tags", tags_path %>
+<a href="#" class="js-tags">View All Tags</a>
+<ul class="tags"> </ul>
 <h2> The Highest Rated Game on FSteam: </h2>
 <p> <%= show_highest_rated(@highest_rated_game) %> </p>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-tags").on("click", function(event) {
+    event.preventDefault();
+    $.get("/tags.json", function(data) {
+      // var tags = data["tags"];
+      var tagList = "";
+      data.forEach(function(tag) {
+        tagList += '<li class="js-tag" data-id="' + tag["id"] + '">' + tag["name"] + '</li>';
+      });
+      $(".tags").html(tagList);
+    });
+  });
+});
+</script>
