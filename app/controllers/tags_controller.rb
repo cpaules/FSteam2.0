@@ -5,6 +5,10 @@ class TagsController < ApplicationController
   # GET /tags.json
   def index
     @tags = Tag.all
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @tags}
+    end
   end
 
   # GET /tags/1

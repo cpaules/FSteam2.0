@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   def home
     @games = Game.all
     @highest_rated_game = Game.highest_rated
+    @tags = Tag.all
   end
 
 end
