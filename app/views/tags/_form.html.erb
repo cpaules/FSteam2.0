@@ -14,7 +14,7 @@
   <%= f.label :name %><br>
   <%= f.text_field :name %>
   <%= f.submit %>
-  
+
 <% end %>
 
 <div id="postResult">
@@ -22,6 +22,14 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
+  function Tag(id, name){
+  this.id = id
+  this.name = name
+  }
+  Tag.prototype.render = function() {
+    $("#tagName").text("New Tag Created: " + this.name);
+  }
+
   $(function () {
     $('form').submit(function(event) {
       //prevent form from submitting the default way
@@ -29,17 +37,8 @@
       var values = $(this).serialize();
       var posting = $.post('/tags', values);
       posting.done(function(data) {
-        $("#tagName").text("New Tag Created: " + data["name"]);
-
-        function Tag(id, name){
-        this.name = name
-        this.homeState = homeState
-        this.training = training
-        }
-        Tag.prototype.veto = function(){
-          return 'No, I must disagree'
-        }
-
+        let tag = new Tag(data["id"], data["name"])
+        tag.render()
       });
     });
   });
