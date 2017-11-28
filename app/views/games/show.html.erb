@@ -34,10 +34,14 @@ $(function () {
       $("#game-" + id + "-tags").html(tagList);
 
       var ratings = data["ratings"];
+      var users = data["users"];
       var ratingList = "";
-      ratings.forEach(function(rating) {
-        ratingList += '<li class="js-rating" data-id="' + rating["id"] + '">' + rating["rating_value"] + ", " + rating["comment"] + '</li>';
-      });
+      for (let i = 0; i < ratings.length; i++) {
+        ratingList += '<li class="js-rating" data-id="' + ratings[i]["id"] + '">' + users[i]["email"] + ": " + ratings[i]["rating_value"] + ", " + ratings[i]["comment"] + '</li>';
+      }
+      //ratings.forEach(function(rating) {
+      //  ratingList += '<li class="js-rating" data-id="' + rating["id"] + '">' + rating["rating_value"] + ", " + rating["comment"] + '</li>';
+      //});
       $("#game-" + id + "-ratings").html(ratingList);
       // re-set the id to current on the link
       $(".js-next").attr("data-id", data["id"]);
