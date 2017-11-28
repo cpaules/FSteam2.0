@@ -21,8 +21,13 @@ function Tag(id, name){
     this.name = name
 }
 
-Tag.prototype.render = function() {
-    $("#tagName").text("New Tag Created: " + this.name);
+Tag.prototype.render = function(element = undefined) {
+    const itemHTML = `New Tag Created: ${this.name}`
+    if (element) {
+        element.append(itemHTML)
+    } else {
+        return itemHTML
+    }
 }
 
 Tag.prototype.renderListItem = function(element = undefined) {
@@ -39,3 +44,6 @@ Tag.renderListItems = function(tags) {
     tags.sort((a,b) => a.name.localeCompare(b.name))
         .map(({ id, name }) => new Tag(id, name).renderListItem(element))  
 }
+
+// [x] validate the dynamic tag form works with application.js, and the .render function has an optional element argument 
+// [x] For getTags function make sure that it doesn't append duplicated tags below the intial getTags request

@@ -25,13 +25,12 @@
   
   $(function () {
     $('form').submit(function(event) {
-      //prevent form from submitting the default way
       event.preventDefault();
       var values = $(this).serialize();
       var posting = $.post('/tags', values);
       posting.done(function(data) {
         let tag = new Tag(data["id"], data["name"])
-        tag.render()
+        tag.render($("#tagName"))
       });
     });
   });

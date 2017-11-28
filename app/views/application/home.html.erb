@@ -16,11 +16,19 @@
 
 <script type="text/javascript" charset="utf-8">
 $(function () {
-  $(".js-tags").on("click", getTags);
 
+  $(".js-tags").on("click", compareSize);
+
+  function compareSize() {
+    $.get("/tags.json", function(data) {
+      if (data.length > $(".tags").children().length) {
+        getTags(event)
+      }
+    });
+  }
+  
   function getTags(event) {
     event.preventDefault();
-
     $.get("/tags.json", Tag.renderListItems);
   }
 });
