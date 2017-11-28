@@ -22,14 +22,7 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-  function Tag(id, name){
-  this.id = id
-  this.name = name
-  }
-  Tag.prototype.render = function() {
-    $("#tagName").text("New Tag Created: " + this.name);
-  }
-
+  
   $(function () {
     $('form').submit(function(event) {
       //prevent form from submitting the default way

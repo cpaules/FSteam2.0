@@ -14,3 +14,28 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+function Tag(id, name){
+    this.id = id
+    this.name = name
+}
+
+Tag.prototype.render = function() {
+    $("#tagName").text("New Tag Created: " + this.name);
+}
+
+Tag.prototype.renderListItem = function(element = undefined) {
+    const listItemHTML = `<li class="js-tag" data-id="${this.id}">${this.name}</li>`
+    if (element) {
+        element.append(listItemHTML)
+    } else {
+        return listItemHTML
+    }
+}
+
+Tag.renderListItems = function(tags) {
+    const element = $(".tags")
+    tags.sort((a,b) => a.name.localeCompare(b.name))
+        .map(({ id, name }) => new Tag(id, name).renderListItem(element))  
+}
