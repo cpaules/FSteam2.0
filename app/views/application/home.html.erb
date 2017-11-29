@@ -18,13 +18,14 @@
 $(function () {
 
   $(".js-tags").on("click", getTags);
-  
-  function getTags(event) {
-    event.preventDefault();
-    if ($(".tags").children().length === 0) {
-      $.get("/tags.json", Tag.renderListItems);
-    }
-    
+
+  function getTags() {
+    $.get("/tags.json", function(data) {
+      if (data.length > $(".tags").children().length) {
+       Tag.renderListItems(data)
+      }
+    })
   }
+
 });
 </script>
