@@ -17,19 +17,14 @@
 <script type="text/javascript" charset="utf-8">
 $(function () {
 
-  $(".js-tags").on("click", compareSize);
-
-  function compareSize() {
-    $.get("/tags.json", function(data) {
-      if (data.length > $(".tags").children().length) {
-        getTags(event)
-      }
-    });
-  }
+  $(".js-tags").on("click", getTags);
   
   function getTags(event) {
     event.preventDefault();
-    $.get("/tags.json", Tag.renderListItems);
+    if ($(".tags").children().length === 0) {
+      $.get("/tags.json", Tag.renderListItems);
+    }
+    
   }
 });
 </script>
