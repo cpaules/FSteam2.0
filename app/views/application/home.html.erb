@@ -16,16 +16,16 @@
 
 <script type="text/javascript" charset="utf-8">
 $(function () {
-  $(".js-tags").on("click", function(event) {
-    event.preventDefault();
+
+  $(".js-tags").on("click", getTags);
+
+  function getTags() {
     $.get("/tags.json", function(data) {
-      // var tags = data["tags"];
-      var tagList = "";
-      data.forEach(function(tag) {
-        tagList += '<li class="js-tag" data-id="' + tag["id"] + '">' + tag["name"] + '</li>';
-      });
-      $(".tags").html(tagList);
-    });
-  });
+      if (data.length > $(".tags").children().length) {
+       Tag.renderListItems(data)
+      }
+    })
+  }
+
 });
 </script>

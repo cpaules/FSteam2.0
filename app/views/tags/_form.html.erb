@@ -22,23 +22,15 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-  function Tag(id, name){
-  this.id = id
-  this.name = name
-  }
-  Tag.prototype.render = function() {
-    $("#tagName").text("New Tag Created: " + this.name);
-  }
-
+  
   $(function () {
     $('form').submit(function(event) {
-      //prevent form from submitting the default way
       event.preventDefault();
       var values = $(this).serialize();
       var posting = $.post('/tags', values);
       posting.done(function(data) {
         let tag = new Tag(data["id"], data["name"])
-        tag.render()
+        tag.render($("#tagName"))
       });
     });
   });
