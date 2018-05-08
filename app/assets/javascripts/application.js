@@ -21,8 +21,8 @@ function Tag(id, name){
     this.name = name
 }
 
-Tag.prototype.render = function(element = undefined) {
-    const itemHTML = `New Tag Created: ${this.name}`
+Tag.prototype.render = function(element) {
+    const itemHTML = "New Tag Created: " + this.name
     if (element) {
         element.append(itemHTML)
     } else {
@@ -30,8 +30,8 @@ Tag.prototype.render = function(element = undefined) {
     }
 }
 
-Tag.prototype.renderListItem = function(element = undefined) {
-    const listItemHTML = `<li class="js-tag" data-id="${this.id}">${this.name}</li>`
+Tag.prototype.renderListItem = function(element) {
+    const listItemHTML = '<li class="js-tag" data-id="' + this.id + ">" + this.name + "</li>"
     if (element) {
         element.append(listItemHTML)
     } else {
