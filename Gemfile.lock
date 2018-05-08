@@ -234,7 +234,7 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   omniauth-facebook
-  pg (~> 0.20)
+  pg
   pry
   puma (~> 3.0)
   rails (~> 5.0.6)
