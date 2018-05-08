@@ -41,6 +41,8 @@ Tag.prototype.renderListItem = function(element = undefined) {
 
 Tag.renderListItems = function(tags) {
     const element = $(".tags")
+    // tags.sort(function(a,b) { a.name.localeCompare(b.name)})
+    //     .map(function(id, name) {new Tag(id, name).renderListItem(element)})  
     tags.sort((a,b) => a.name.localeCompare(b.name))
         .map(({ id, name }) => new Tag(id, name).renderListItem(element))  
 }
